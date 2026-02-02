@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPITIPI</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/single.css">
+</head>
+<body>
+    <div id="toast"></div>
+
+    <nav class="navbar">
+        <button class="back-btn"><a href="index.html">← Back</a></button>
+        <h1 class="logo-title">IPITIPI</h1>
+    </nav>
+    
+    <div class="main">
+        <div class="container">
+            <!-- LEFT -->
+            <div class="content">
+                <video id="videoPlayer" controls autoplay></video>
+                <div id="nowPlaying">Select channel...</div>
+            </div>
+            <!-- RIGHT -->
+            <div class="side">
+                <div class="filter">
+                    <select id="countrySelect">
+                        <option value="" disabled selected hidden>Pick a country</option>
+                    </select>
+                    <input id="searchChannel" type="text" placeholder="Search channel...">
+                </div>
+                <div class="sidebar-list">
+                    <div class="tvlist"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>nnnnnoooooeeeee</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="/js/single.js"></script>
+</body>
+</html>
