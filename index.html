@@ -11,35 +11,44 @@
     <nav class="navbar">
         <h1 class="logo-title">IPITIPI</h1>
     </nav>
+    
+    <div class="main-body">
+        <header class="topbar">
+            <button id="addBtn">ADD TILE</button>
+            <button id="removeBtn">REMOVE TILE</button>
+        </header>
+        
 
-    <div class="main">
-        <div class="card">
-            <a href="./single.html">
-                <h3>Single</h3>
-                <div class="grid-preview single"><div class="box"></div></div>
-            </a>
-        </div>
+        <main>
+            <div id="grid" class="grid"></div>
+        </main>
 
-        <div class="card">
-            <a href="./double.html">
-                <h3>Double</h3>
-                <div class="grid-preview double">
-                    <div class="box"></div><div class="box"></div>
+        <div id="modal" class="modal hidden">
+            <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2>Select TV Channel</h2>
+            
+            <div class="filter-area">
+                <select id="countrySelect">
+                <option value="">-- Select Country --</option>
+                </select>
+                
+                <input type="text" id="searchChannel" placeholder="Search channel..." class="hidden" />
+                
+                <p id="statusText">Waiting for selection...</p>
+            </div>
+
+            <div id="channelGrid" class="channel-grid">
                 </div>
-            </a>
-        </div>
-
-        <div class="card">
-            <h3>Quad</h3>
-            <div class="grid-preview quad">
-                <div class="box"></div><div class="box"></div>
-                <div class="box"></div><div class="box"></div>
             </div>
         </div>
-    </div>
 
-    <div class="footer">
-        <p>nnnnnoooooeeeee</p>
     </div>
+    
+    <div class="footer">
+        <a href="https://github.com/nnnnnoooooeeeee/IPITIPI">nnnnnoooooeeeee</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="./js/script.js"></script>
 </body>
 </html>
