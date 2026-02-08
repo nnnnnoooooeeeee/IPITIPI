@@ -1,8 +1,8 @@
 * {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
-font-family: sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
 }
 
 body{
@@ -76,27 +76,27 @@ fooot{
 }
 
 .topbar button {
-padding: 8px 16px;
-border: none;
-background: black;
-color: white;
-font-weight: bold;
-cursor: pointer;
-border-style: solid;
-/* border-radius: 6px; */
+  padding: 8px 16px;
+  border: none;
+  background: black;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-style: solid;
+  /* border-radius: 6px; */
 }
 
 .topbar button:hover {
-background: darkblue;
+  background: darkblue;
 }
 
 /* GRID MAIN */
 .grid {
-display: grid;
-gap: 7px; 
-padding: 10px 10px 10px 10px;
-margin-top: 10px;
-border-bottom: white;
+  display: grid;
+  gap: 7px; 
+  padding: 10px 10px 10px 10px;
+  margin-top: 10px;
+  border-bottom: white;
 }
 
 /* Column control via JS */
@@ -105,213 +105,214 @@ border-bottom: white;
 .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
 
 @media (max-width: 768px) {
-.grid { grid-template-columns: 1fr !important; }
+  .grid { grid-template-columns: 1fr !important; }
 }
 
 /* ===================== TILE =========================== */
 .tile {
-background: #222;
-position: relative;
-aspect-ratio: 16 / 9;
-border-style: solid;
-display: flex;
-align-items: center;
-justify-content: center;
-cursor: pointer;
-font-size: 40px;
-transition: 0.2s;
-border: 5px solid white;
+  background: #222;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-style: solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 40px;
+  transition: 0.2s;
+  border: 5px solid white;
 }
 
 .tile:hover {
-background: #333;
-border-color: #555;
+  background: #333;
+  border-color: #555;
 }
 
 .tile.has-video {
-background: black;
-cursor: default;
-border: 1px solid #444;
+  background: black;
+  cursor: default;
+  border: 1px solid #444;
 }
 
 /* ==================== Video Player Styles =================== */
 video {
-width: 100%;
-height: 100%;
-object-fit: contain;
-border: 3px solid white;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border: 3px solid white;
 }
 
 /* ================== FLOATING CONTROLS =================  */
 .tile-controls {
-    position: absolute;
-    top: 10px; 
-    right: 10px;    
-    left: auto;    
-    transform: none;
-    display: flex;
-    gap: 8px;
-    z-index: 20;   
-    background: rgba(0, 0, 0, 0.6); 
-    padding: 5px;
-    transition: opacity 0.3s;
+  position: absolute;
+  top: 10px; 
+  right: 10px;    
+  left: auto;    
+  transform: none;
+  display: flex;
+  gap: 8px;
+  z-index: 20;   
+  background: rgba(0, 0, 0, 0.6); 
+  padding: 5px;
+  transition: opacity 0.3s;
 }
 
 .tile .tile-controls {
-    opacity: 0;
+  opacity: 0;
 }
 
 .tile:hover .tile-controls {
-    opacity: 1;
+  opacity: 1;
 }
 
 .control-btn {
-width: 30px;
-height: 30px;
-border: none;
-font-weight: bold;
-font-size: 16px;
-cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: center;
-box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-transition: transform 0.2s;
+  width: 30px;
+  height: 30px;
+  border: none;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  transition: transform 0.2s;
 }
 
 .control-btn:hover {
-transform: scale(1.15);
+  transform: scale(1.15);
 }
 
 .btn-change {
-background: black;
-color: white;
-border: 1px solid white;
+  background: black;
+  color: white;
+  border: 1px solid white;
 }
 
 .btn-close {
-background: black;
-color: white;
-border: 1px solid white;
+  background: black;
+  color: white;
+  border: 1px solid white;
 }
 
 /* ============================ MODAL (POP UP)================ */
 .modal {
-position: fixed;
-inset: 0;
-background: rgba(0, 0, 0, 0.85);
-display: flex;
-align-items: center;
-justify-content: center;
-z-index: 100;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
 }
 
 .modal.hidden {
-display: none;
+  display: none;
 }
 
 /* POP UP BODY */
 .modal-content {
-width: 90%;
-height: 90%;
-background: #1c1c1c;
-border: 5px solid white;
-padding: 20px;
-position: relative;
-display: flex;
-flex-direction: column;
+  width: 90%;
+  height: 90%;
+  background: #1c1c1c;
+  border: 5px solid white;
+  padding: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .close {
-position: absolute;
-top: 10px;
-right: 15px;
-font-size: 28px;
-cursor: pointer;
-z-index: 5;
-color: #888;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 5;
+  color: #888;
 }
 
 .close:hover {
-color: #fff;
+  color: #fff;
 }
 
 .filter-area {
-margin: 15px 0;
-display: flex;
-flex-wrap: wrap;
-gap: 15px;
-align-items: center;
+  margin: 15px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
 }
 
 /* Form Elements */
 #countrySelect, #searchChannel {
-padding: 10px;
-background: #333;
-color: white;
-border: 3px solid white;
-font-size: 16px;
-outline: none;
+  padding: 10px;
+  background: #333;
+  color: white;
+  border: 3px solid white;
+  font-size: 16px;
+  outline: none;
+  max-width: 100%;
 }
 
 #searchChannel {
-flex: 1; /* Search bar takes available width */
-min-width: 200px;
+  flex: 1; /* Search bar takes available width */
+  min-width: 200px;
 }
 
 #countrySelect:focus, #searchChannel:focus {
-border-color: lightblue;
+  border-color: lightblue;
 }
 
 /* Utility to hide elements */
 .hidden {
-display: none !important;
+  display: none !important;
 }
 
 /* CHANNEL GRID (Inside Modal) */
 .channel-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-gap: 15px;
-overflow-y: auto;
-padding: 10px;
-background: #111;
-border: 1px solid white;
-flex: 1; 
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 15px;
+  overflow-y: auto;
+  padding: 10px;
+  background: #111;
+  border: 1px solid white;
+  flex: 1; 
 }
 
 /* Channel Item */
 .channel-item {
-background: #2a2a2a;
-aspect-ratio: 1 / 1;
-padding: 10px;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-cursor: pointer;
-transition: 0.2s;
-text-align: center;
-position: relative;
-border: 1px solid white;
+  background: #2a2a2a;
+  aspect-ratio: 1 / 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+  text-align: center;
+  position: relative;
+  border: 1px solid white;
 }
 
 .channel-item:hover {
-background: #444;
-transform: translateY(-2px);
-box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  background: #444;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
 }
 
 .channel-item img {
-width: 60px;
-height: 60px;
-object-fit: contain;
-margin-bottom: 8px;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 8px;
 }
 
 .channel-item span {
-font-size: 11px;
-color: #ddd;
-word-break: break-word;
-line-height: 1.3;
+  font-size: 11px;
+  color: #ddd;
+  word-break: break-word;
+  line-height: 1.3;
 }
