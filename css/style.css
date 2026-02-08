@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Train+One&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -15,6 +17,10 @@ body{
   "navbar" 
   "main"
   "footer";
+}
+
+h1{
+  font-family: "Train One";
 }
 
 /* NAVBAR */
