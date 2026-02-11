@@ -77,12 +77,12 @@ fooot{
 .topbar {
   padding: 10px;
   display: flex;
-  gap: 50px;
+  gap: 10px;
   justify-content: center;
 }
 
 .topbar button {
-  padding: 8px 16px;
+  padding: 10px 10px;
   border: none;
   background: black;
   color: white;
@@ -322,3 +322,4 @@ video {
   word-break: break-word;
   line-height: 1.3;
 }
+
