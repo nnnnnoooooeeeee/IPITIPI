@@ -3,7 +3,7 @@ IPITIPI is a web-based IPTV multistream viewer that allows users to watch multip
 [Watch Now](https://nnnnnoooooeeeee.github.io/IPITIPI/)
 
 - Watch multiple IPTV streams simultaneously
-- Dynamic grid layout (user can choose number of views)
+- Dynamic grid layout (user can choose number of grids)
 - Add or remove stream panels easily
 - Supports IPTV playlists (M3U links)
 - Lightweight and browser-based (no installation required)
