@@ -143,7 +143,31 @@ fooot{
 .tile.has-video {
   background: black;
   cursor: default;
-  border: 1px solid #444;
+  border: 1px solid white;
+}
+
+.tile.error {
+  background: #3b0000;
+  border-color: #ff4444;
+  color: #ff4444;
+}
+
+.tile.error .tile-plus {
+  color: #ff4444;
+}
+
+.tile.error .tile-error-message {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #ff9999;
+}
+
+.tile.error .tile-plus {
+  font-size: 40px;
 }
 
 /* ==================== Video Player Styles =================== */

@@ -16,6 +16,7 @@ let activeTile = null;
 let hlsPlayers = new Map(); 
 let currentChannelList = []; 
 let allCountries = []; 
+let currentCountryCode = ''; 
 
 /* ===== API & Data Handling ===== */
 
@@ -163,8 +164,10 @@ countrySelect.addEventListener("change", (e) => {
     const selectedName = e.target.value;
     const country = allCountries.find(c => c.name === selectedName);
     if (country) {
-        fetchAndRenderChannels(country.code.toLowerCase());
+        currentCountryCode = country.code.toLowerCase();
+        fetchAndRenderChannels(currentCountryCode);
     } else {
+        currentCountryCode = '';
         fetchAndRenderChannels('');
     }
 });
@@ -188,6 +191,11 @@ function createTile() {
         if (!tile.classList.contains("has-video")) {
         activeTile = tile;
         modal.classList.remove("hidden");
+        // Set country if tile has saved country
+        if (tile.dataset.countryName) {
+            countrySelect.value = tile.dataset.countryName;
+            countrySelect.dispatchEvent(new Event('change'));
+        }
         }
     });
 
@@ -205,15 +213,39 @@ function removeTile() {
     updateColumns();
 }
 
+function setTileErrorState(tile) {
+    tile.classList.remove("has-video");
+    tile.classList.add("error");
+    tile.innerHTML = `
+        <div class="tile-error-message">ERROR</div>
+        <div class="tile-plus">+</div>
+    `;
+}
+
 function playStreamInTile(tile, url) {
+    tile.classList.remove("error");
     tile.innerHTML = ""; // Clear the "+"
     tile.classList.add("has-video");
+
+    // Save current country to tile
+    if (currentCountryCode) {
+        tile.dataset.countryCode = currentCountryCode;
+        const country = allCountries.find(c => c.code.toLowerCase() === currentCountryCode);
+        if (country) {
+            tile.dataset.countryName = country.name;
+        }
+    }
 
     const video = document.createElement("video");
     video.controls = true; 
     video.autoplay = true;
     video.playsinline = true;
     tile.appendChild(video);
+
+    const handlePlaybackError = () => {
+        stopStreamInTile(tile, true);
+        statusText.textContent = "Channel error. Please try another channel.";
+    };
 
     if (Hls.isSupported()) {
         if (hlsPlayers.has(tile.dataset.id)) {
@@ -226,8 +258,17 @@ function playStreamInTile(tile, url) {
         video.play().catch(e => console.log("Autoplay prevented, user must click play."));
         });
         hls.on(Hls.Events.ERROR, function(event, data) {
-            if(data.fatal) {
-            hls.recoverMediaError();
+            if (data.fatal) {
+                switch (data.type) {
+                    case Hls.ErrorTypes.NETWORK_ERROR:
+                    case Hls.ErrorTypes.MEDIA_ERROR:
+                    case Hls.ErrorTypes.OTHER_ERROR:
+                        handlePlaybackError();
+                        break;
+                    default:
+                        hls.recoverMediaError();
+                        break;
+                }
             }
         });
         hlsPlayers.set(tile.dataset.id, hls);
@@ -235,8 +276,9 @@ function playStreamInTile(tile, url) {
     else if (video.canPlayType('application/vnd.apple.mpegurl')) {
         video.src = url;
         video.addEventListener('loadedmetadata', function() {
-        video.play();
+        video.play().catch(handlePlaybackError);
         });
+        video.addEventListener('error', handlePlaybackError);
     }
 
     addTileControls(tile);
@@ -257,6 +299,11 @@ function addTileControls(tile) {
         e.stopPropagation();
         activeTile = tile;
         modal.classList.remove("hidden");
+        // Set country if tile has saved country
+        if (tile.dataset.countryName) {
+            countrySelect.value = tile.dataset.countryName;
+            countrySelect.dispatchEvent(new Event('change'));
+        }
     };
 
     const closeBtn = document.createElement("button");
@@ -273,17 +320,28 @@ function addTileControls(tile) {
     tile.appendChild(controlDiv);
 }
 
-function stopStreamInTile(tile) {
+function stopStreamInTile(tile, isError = false) {
     const id = tile.dataset.id;
     if (hlsPlayers.has(id)) {
         hlsPlayers.get(id).destroy();
         hlsPlayers.delete(id);
     }
-    tile.innerHTML = "+";
-    tile.classList.remove("has-video");
 
     const controls = tile.querySelector('.tile-controls');
     if (controls) controls.remove();
+
+    tile.classList.remove("has-video");
+    tile.classList.remove("error");
+
+    if (isError) {
+        tile.classList.add("error");
+        tile.innerHTML = `
+            <div class="tile-error-message">ERROR</div>
+            <div class="tile-plus">+</div>
+        `;
+    } else {
+        tile.innerHTML = "+";
+    }
 }
 
 /* ===== Init ===== */
