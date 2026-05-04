@@ -6,6 +6,7 @@ const removeBtn = document.getElementById("removeBtn");
 const modal = document.getElementById("modal");
 const closeModal = document.getElementById("closeModal");
 const countrySelect = document.getElementById("countrySelect");
+const countriesDatalist = document.getElementById("countries");
 const searchChannel = document.getElementById("searchChannel");
 const channelGrid = document.getElementById("channelGrid");
 const statusText = document.getElementById("statusText");
@@ -14,6 +15,7 @@ let tileCount = 0;
 let activeTile = null; 
 let hlsPlayers = new Map(); 
 let currentChannelList = []; 
+let allCountries = []; 
 
 /* ===== API & Data Handling ===== */
 
@@ -28,15 +30,16 @@ async function initData() {
         // Sort alphabetically
         countries.sort((a, b) => a.name.localeCompare(b.name));
         
+        allCountries = countries;
+        
         // Reset options
-        countrySelect.innerHTML = '<option value="">-- Select Country --</option>';
+        countriesDatalist.innerHTML = '';
         
         // Pure alphabetical list (No recommendations)
         countries.forEach(c => {
-        const opt = document.createElement("option");
-        opt.value = c.code.toLowerCase(); 
-        opt.textContent = c.name; 
-        countrySelect.appendChild(opt);
+            const opt = document.createElement("option");
+            opt.value = c.name;
+            countriesDatalist.appendChild(opt);
         });
         
         statusText.textContent = "Ready. Please select a country.";
@@ -157,7 +160,13 @@ renderGridItems(filtered);
 });
 
 countrySelect.addEventListener("change", (e) => {
-fetchAndRenderChannels(e.target.value);
+    const selectedName = e.target.value;
+    const country = allCountries.find(c => c.name === selectedName);
+    if (country) {
+        fetchAndRenderChannels(country.code.toLowerCase());
+    } else {
+        fetchAndRenderChannels('');
+    }
 });
 
 /* ===== GRID & PLAYER LOGIC ===== */

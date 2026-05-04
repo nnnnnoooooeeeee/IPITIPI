@@ -14,8 +14,8 @@
     
     <div class="main-body">
         <header class="topbar">
-            <button id="addBtn">➕</button>
-            <button id="removeBtn">➖</button>
+            <button id="addBtn">+</button>
+            <button id="removeBtn">-</button>
         </header>
         
         <main>
@@ -28,9 +28,8 @@
             <h2>Select TV Channel</h2>
             
             <div class="filter-area">
-                <select id="countrySelect">
-                    <option value="">-- Select Country --</option>
-                </select>
+                <input type="text" id="countrySelect" list="countries" placeholder="Select or type country">
+                <datalist id="countries"></datalist>
                 
                 <input type="text" id="searchChannel" placeholder="Search channel..." class="hidden" />
                 

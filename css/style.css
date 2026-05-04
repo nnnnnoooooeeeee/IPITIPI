@@ -82,13 +82,19 @@ fooot{
 }
 
 .topbar button {
-  padding: 10px 10px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
   border: none;
   background: black;
   color: white;
   font-weight: bold;
+  font-size: 24px;
   cursor: pointer;
   border-style: solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   /* border-radius: 6px; */
 }
 
